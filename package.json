@@ -1,0 +1,23 @@
+{
+  "name": "backend-nodejs",
+  "version": "0.0.1",
+  "description": "This is a project for practice with authorization, microservices and redis ",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "Nodejs",
+    "Redis",
+    "JWT",
+    "API",
+    "Backend"
+  ],
+  "author": "juancodev <montillasanchezjuancarlos@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.18.2",
+    "nanoid": "^2.1.11",
+    "swagger-ui-express": "^5.0.0"
+  }
+}
