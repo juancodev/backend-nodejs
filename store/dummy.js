@@ -15,6 +15,10 @@ async function get(table, id) {
 }
 
 async function upsert(table, data) {
+  if (!db[table]) {
+    db[table] = [];
+  }
+  console.log(db)
   return await db[table].push(data);
 }
 
