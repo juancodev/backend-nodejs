@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const secure = require('./secure');
 const controller = require('./index');
 const response = require('../../../network/response');
 
@@ -19,6 +20,12 @@ router.get('/:id', (req, res) => {
 });
 
 router.post('/', (req, res) => {
+  controller.upsert(req.body)
+    .then((user) => response.success(req, res, user, 201))
+    .catch((error) => response.error(req, res, 'Internal Error', 500, error));
+});
+
+router.put('/', secure('update'), (req, res) => {
   controller.upsert(req.body)
     .then((user) => response.success(req, res, user, 201))
     .catch((error) => response.error(req, res, 'Internal Error', 500, error));
