@@ -3,6 +3,7 @@ const swaggerUI = require('swagger-ui-express');
 const config = require('../config.js');
 const user = require('./components/user/router.js');
 const auth = require('./components/auth/router.js');
+const post = require('./components/post/router.js');
 const app = express();
 
 const swaggerDoc = require('./swagger.json');
@@ -16,6 +17,7 @@ app.use(express.urlencoded({
 }));
 app.use('/api/user', user);
 app.use('/api/auth', auth);
+app.use('/api/post', post);
 app.use('/api-docs', swaggerUI.serve, swaggerUI.setup(swaggerDoc));
 
 // Manage Error

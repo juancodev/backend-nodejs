@@ -11,12 +11,6 @@ router.get('/', (req, res) => {
 
 });
 
-router.post('/follow/:id', secure('follow'), (req, res, next) => {
-  controller.follow(req.user.id, req.params.id)
-    .then((data) => response.success(req, res, data, 201))
-    .catch(next);
-})
-
 router.get('/:id', (req, res) => {
   controller.get(req.params.id)
     .then((user) => {
@@ -24,6 +18,18 @@ router.get('/:id', (req, res) => {
     })
     .catch((error) => response.error(req, res, 'Internal Error', 500, error));
 });
+
+router.get('/:id/following', (req, res, next) => {
+  controller.following(req.params.id)
+    .then((data) => response.success(req, res, data, 200))
+    .catch(next);
+})
+
+router.post('/follow/:id', secure('follow'), (req, res, next) => {
+  controller.follow(req.user.id, req.params.id)
+    .then((data) => response.success(req, res, data, 201))
+    .catch(next);
+})
 
 router.post('/', (req, res) => {
   controller.upsert(req.body)
